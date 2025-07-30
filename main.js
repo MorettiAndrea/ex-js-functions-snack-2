@@ -92,36 +92,41 @@ function stampaOgniSecondo (sec){
 // Crea una funzione che ferma un timer dopo un certo tempo
 // Scrivi una funzione eseguiEferma che accetta un messaggio, un tempo di avvio e un tempo di stop. Il messaggio deve essere stampato a intervalli regolari, ma si deve fermare dopo il tempo di stop.
 
-function eseguiEferma(message,goSec,stopSec){
-    const timer = setInterval(
-        function () {
-        
-            if (goSec < stopSec) {
-                goSec ++;
-                console.log("messaggio",message)   
-                console.log("go",goSec);
-                console.log("stop",stopSec);
-                
-                
-            }
-            else{ clearInterval(timer)}
-        },1000)
+function eseguiEferma(message, goSec, stopSec) {
+    let currentSec = 0;
+
+    const timer = setInterval(() => {
+        currentSec++;
+
+        if (currentSec >= goSec && currentSec < stopSec) {
+            console.log(message);
+        }
+
+        if (currentSec >= stopSec) {
+            clearInterval(timer);
+            console.log("Tempo scaduto!");
+        }
+    }, 1000);
 }
 
-eseguiEferma("hello world",0,5)
+eseguiEferma("hello world",9,10)
 
 // 🎯 Snack 8 (Bonus)
 // Crea una funzione che simula un conto alla rovescia
 // Scrivi una funzione contoAllaRovescia che accetta un numero n e stampa il conto alla rovescia da n a 0, con un intervallo di 1 secondo tra ogni numero. Quando arriva a 0, stampa "Tempo scaduto!" e interrompe il timer.
-// Esempio di utilizzo:
-// contoAllaRovescia(5)
-// Output atteso:
-// 5
-// 4
-// 3
-// 2
-// 1
-// Tempo scaduto!
+
+function contoAllaRovescia(sec){
+    const timer = setInterval(()=>{
+      
+        if (sec>0) {console.log(`mancano ${sec} secondi`);
+          sec--;}
+         else{clearInterval(timer)
+            console.log("Tempo scaduto");
+        }
+    },1000)
+}
+contoAllaRovescia(10)
+
 // 🎯 Snack 9 (Bonus)
 // Creare una funzione che esegue una sequenza di operazioni con ritardi
 // Scrivi una funzione sequenzaOperazioni che accetta un array di operazioni (funzioni) e un tempo di intervallo.
