@@ -48,7 +48,9 @@ function moltiplica (primo,secondo){return primo * secondo}
 // 🏆 Snack 4
 // Crea un generatore di funzioni creaTimer
 // Scrivi una funzione creaTimer che accetta un tempo (in ms) e restituisce una nuova funzione che avvia un setTimeout per stampare "Tempo scaduto!".
-function creaTimer(ms){return function(){setTimeout(function(){console.log("Tempo Scaduto!");},ms)}}
+function creaTimer(ms)
+{return function()
+    {setTimeout(function(){console.log("Tempo Scaduto!");},ms)}}
 
 // creaTimer(2000)()
 // 🏆 Snack 5
@@ -109,7 +111,7 @@ function eseguiEferma(message, goSec, stopSec) {
     }, 1000);
 }
 
-eseguiEferma("hello world",9,10)
+// eseguiEferma("hello world",9,10)
 
 // 🎯 Snack 8 (Bonus)
 // Crea una funzione che simula un conto alla rovescia
@@ -125,7 +127,7 @@ function contoAllaRovescia(sec){
         }
     },1000)
 }
-contoAllaRovescia(10)
+// contoAllaRovescia(10)
 
 // 🎯 Snack 9 (Bonus)
 // Creare una funzione che esegue una sequenza di operazioni con ritardi
@@ -142,6 +144,20 @@ contoAllaRovescia(10)
 // Operazione 1
 // Operazione 2
 // Operazione 3
+
+const arrayOperazioni=[
+    ()=>console.log("hello"),
+    ()=>console.log("world"),
+    ()=>console.log("I'm"),
+    ()=>console.log("an array!")
+]
+
+function sequenzaOperazioni(Operazioni,sec)
+{Operazioni.forEach((operazione,index)=>{
+    setTimeout(()=>{operazione()},index*sec)
+})}
+
+sequenzaOperazioni(arrayOperazioni,2000)
 // 🎯 Snack 10 (Bonus)
 // Creare un throttler per limitare l’esecuzione di una funzione
 // Scrivi una funzione creaThrottler che accetta una funzione e un tempo `limite`.
