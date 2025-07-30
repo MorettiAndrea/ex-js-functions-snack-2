@@ -71,14 +71,45 @@ function stampaOgniSecondo (sec){
         },1000)
     }
 
-    stampaOgniSecondo(5)
+    // stampaOgniSecondo(5)
     
     // 🏆 Snack 6
 // Crea un contatore automatico con setInterval
 // Definisci una funzione creaContatoreAutomatico che accetta un intervallo di tempo e restituisce una funzione che avvia un setInterval, incrementando un contatore e stampandolo.
+  function creaContatoreAutomatico (ms){
+    let contatore = 0
+    return(function(){setInterval(function(){
+        contatore++;
+        console.log(contatore);
+    },ms)})
+}
+
+// creaContatoreAutomatico(3000)()
+
+
+
 // 🏆 Snack 7
 // Crea una funzione che ferma un timer dopo un certo tempo
 // Scrivi una funzione eseguiEferma che accetta un messaggio, un tempo di avvio e un tempo di stop. Il messaggio deve essere stampato a intervalli regolari, ma si deve fermare dopo il tempo di stop.
+
+function eseguiEferma(message,goSec,stopSec){
+    const timer = setInterval(
+        function () {
+        
+            if (goSec < stopSec) {
+                goSec ++;
+                console.log("messaggio",message)   
+                console.log("go",goSec);
+                console.log("stop",stopSec);
+                
+                
+            }
+            else{ clearInterval(timer)}
+        },1000)
+}
+
+eseguiEferma("hello world",0,5)
+
 // 🎯 Snack 8 (Bonus)
 // Crea una funzione che simula un conto alla rovescia
 // Scrivi una funzione contoAllaRovescia che accetta un numero n e stampa il conto alla rovescia da n a 0, con un intervallo di 1 secondo tra ogni numero. Quando arriva a 0, stampa "Tempo scaduto!" e interrompe il timer.
