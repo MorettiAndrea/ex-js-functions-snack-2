@@ -157,7 +157,8 @@ function sequenzaOperazioni(Operazioni,sec)
     setTimeout(()=>{operazione()},index*sec)
 })}
 
-sequenzaOperazioni(arrayOperazioni,2000)
+// sequenzaOperazioni(arrayOperazioni,2000)
+
 // 🎯 Snack 10 (Bonus)
 // Creare un throttler per limitare l’esecuzione di una funzione
 // Scrivi una funzione creaThrottler che accetta una funzione e un tempo `limite`.
@@ -170,3 +171,23 @@ sequenzaOperazioni(arrayOperazioni,2000)
 // throttledLog(); // ❌ Ignorato (chiamato troppo presto)
 // setTimeout(throttledLog, 2500); // ✅ "Eseguito!" (dopo 2.5 secondi)
 // ​
+function creaThrottler(funzione,delay){
+    let ultimaEsecuzione = 0
+
+    return function(...argomenti){
+        const oraAttuale= Date.now()
+        if (oraAttuale - ultimaEsecuzione >= delay ){
+            ultimaEsecuzione = oraAttuale
+            funzione(...argomenti)
+        }
+    }
+}
+
+function throttledLog(){
+    console.log("il throttler funziona!");
+    
+}
+
+throttledLog()
+throttledLog()
+setTimeout(throttledLog,3000)
