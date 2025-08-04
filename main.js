@@ -171,23 +171,26 @@ function sequenzaOperazioni(Operazioni,sec)
 // throttledLog(); // ❌ Ignorato (chiamato troppo presto)
 // setTimeout(throttledLog, 2500); // ✅ "Eseguito!" (dopo 2.5 secondi)
 // ​
-function creaThrottler(funzione,delay){
-    let ultimaEsecuzione = 0
+function creaThrottler(funzione, delay) {
+    let ultimaEsecuzione = 0;
 
-    return function(...argomenti){
-        const oraAttuale= Date.now()
-        if (oraAttuale - ultimaEsecuzione >= delay ){
-            ultimaEsecuzione = oraAttuale
-            funzione(...argomenti)
+    return function (...argomenti) {
+        const oraAttuale = Date.now();
+        if (oraAttuale - ultimaEsecuzione >= delay) {
+            ultimaEsecuzione = oraAttuale;
+            funzione(...argomenti);
         }
-    }
+    };
 }
 
-function throttledLog(){
+
+const throttledLog = creaThrottler(() => {
     console.log("il throttler funziona!");
-    
-}
+}, 2000);
 
-throttledLog()
-throttledLog()
-setTimeout(throttledLog,3000)
+
+throttledLog(); 
+throttledLog(); 
+
+setTimeout(throttledLog, 1000); 
+setTimeout(throttledLog, 2500); 
